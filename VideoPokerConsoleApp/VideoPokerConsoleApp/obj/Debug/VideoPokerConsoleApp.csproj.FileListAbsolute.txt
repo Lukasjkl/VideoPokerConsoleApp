@@ -1,0 +1,7 @@
+C:\Users\lukas\Desktop\VideoPokerConsoleApp\VideoPokerConsoleApp\bin\Debug\VideoPokerConsoleApp.exe.config
+C:\Users\lukas\Desktop\VideoPokerConsoleApp\VideoPokerConsoleApp\bin\Debug\VideoPokerConsoleApp.exe
+C:\Users\lukas\Desktop\VideoPokerConsoleApp\VideoPokerConsoleApp\bin\Debug\VideoPokerConsoleApp.pdb
+C:\Users\lukas\Desktop\VideoPokerConsoleApp\VideoPokerConsoleApp\obj\Debug\VideoPokerConsoleApp.csprojAssemblyReference.cache
+C:\Users\lukas\Desktop\VideoPokerConsoleApp\VideoPokerConsoleApp\obj\Debug\VideoPokerConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\lukas\Desktop\VideoPokerConsoleApp\VideoPokerConsoleApp\obj\Debug\VideoPokerConsoleApp.exe
+C:\Users\lukas\Desktop\VideoPokerConsoleApp\VideoPokerConsoleApp\obj\Debug\VideoPokerConsoleApp.pdb
