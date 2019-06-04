@@ -34,14 +34,13 @@ namespace VideoPokerConsoleApp
             FillLocalDeck();
             
             // Gives start choices to player
-            Console.WriteLine("Possible actions - QUIT/DEAL");
             // While loop that does not let to proceed further when invalid action is chosen by user
             while (!IsInputValid(playerChoice))
             {
-                Console.Write("Choose action: ");
+                View.DisplayStartActions();
                 playerChoice = Console.ReadLine();
             }
-            DealCards();
+            View.DealCards(deckArray);
         }
 
         // End method of Template pattern
@@ -54,8 +53,7 @@ namespace VideoPokerConsoleApp
         // Play game method of Template pattern
         protected override void PlayGame()
         {
-            Console.WriteLine("Possible actions - QUIT/DISCARD/DRAW/CREDIT");
-            Console.Write("Choose action: ");
+            View.DisplayPlayActions();
             HandleChoice(playerChoice = Console.ReadLine());
         }
 
@@ -89,41 +87,11 @@ namespace VideoPokerConsoleApp
             cardsDiscarded = new List<int>();
             FillLocalDeck();
         }
-        
-        // Method to display cards on the console
-        private void DealCards()
-        {
-            Console.WriteLine("New deck: ");
-            Console.Write("ID: ");
-            for (int i = 1; i <= 5; i++) Console.Write("{0, -20}", i);
-
-            Console.WriteLine();
-
-            for (int i = 0; i < deckArray.Length; i++)
-            {
-                Console.Write("{0, -20}", deckArray[i]);
-            }
-            Console.WriteLine();
-        }
-
-        // Method to display old hand and winning on the console
-        private void DisplayWinning(HAND hand, Card[] oldDeck)
-        {
-            Console.Clear();
-            Console.WriteLine("Your hand was: ");
-            for (int i = 0; i < oldDeck.Length; i++)
-            {
-                Console.Write("{0, -20}", oldDeck[i]);
-            }
-            Console.WriteLine();
-            Console.WriteLine("Result: " + DetermineWinner.HandCombo(hand) + " and "
-                + DetermineWinner.Winning(hand) + " was added to your credit.");
-        }
 
         // Method that handles HOLD choice
         private void HandleHold()
         {
-            Console.WriteLine("Choose card IDs to be discarded (separate by whitespace or any symbol): ");
+            View.DisplayDiscardIDS();
             String text = Console.ReadLine();
             // Gets only numbers from input string
             Regex regex = new Regex(@"\D+|(^\|\*\s*)|(\s*\|\s*)");
@@ -138,12 +106,11 @@ namespace VideoPokerConsoleApp
                 if (int.Parse(splitString[i]) <= 5) cardsDiscarded.Add(int.Parse(splitString[i]));
             }
             deckArray = gameDeck.SwapDiscardedCards(deckArray, cardsDiscarded);
-            DealCards();
+            View.DealCards(deckArray);
             // While loop does not let to discard cards again (forces to draw with discarded ones)
             while (playerChoice != "QUIT" && playerChoice != "DRAW")
             {
-                Console.WriteLine("Possible actions - QUIT/DRAW");
-                Console.Write("Choose action: ");
+                View.DisplayDiscardActions();
                 playerChoice = Console.ReadLine();
             }
             HandleChoice(playerChoice);
@@ -155,9 +122,9 @@ namespace VideoPokerConsoleApp
             EvaluateHand evaluator = new EvaluateHand(deckArray);
             HAND hand = evaluator.HandEvaluator(); // gets value of hand displayed
             currentPlayer.AddCredit(DetermineWinner.Winning(hand)); // Adds credit to player's balance
-            DisplayWinning(hand, deckArray);
+            View.DisplayWinning(hand, deckArray);
             ResetLocalDeck();
-            DealCards();
+            View.DealCards(deckArray);
         }
         
         // Method to handle choices
@@ -165,8 +132,11 @@ namespace VideoPokerConsoleApp
         {
             switch(userChoice)
             {
+                case "PRIZES":
+                    View.DisplayPrizes();
+                    break;
                 case "CREDIT":
-                    Console.WriteLine("Your credit is: " + currentPlayer.Credit);
+                    View.DisplayCredit(currentPlayer);
                     break;
 
                 case "DRAW":

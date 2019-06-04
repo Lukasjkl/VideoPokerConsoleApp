@@ -11,8 +11,8 @@ namespace VideoPokerConsoleApp
         static void Main(string[] args)
         {
             // Set console size
-            Console.SetWindowSize(110, 25);
-            Console.SetBufferSize(110, 25);
+            Console.SetWindowSize(110, 35);
+            Console.SetBufferSize(110, 35);
 
             // Set console color
             Console.BackgroundColor = ConsoleColor.White;

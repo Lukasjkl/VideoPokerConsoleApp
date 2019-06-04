@@ -55,6 +55,7 @@
     <Compile Include="Enums\SUIT.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="Enums\VALUE.cs" />
+    <Compile Include="View.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
